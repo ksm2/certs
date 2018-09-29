@@ -40,3 +40,14 @@ ca-cert.pem: ca-key.pem
 	openssl x509 -text \
 		-noout \
 		-in $@
+
+# Generate CA certificate chain
+%-chain.pem: %-cert.pem ca-cert.pem
+	cat $+ > $@
+
+# Generate PFX certificate
+%.pfx: %-chain.pem
+	openssl pkcs12 -export \
+		-in $< \
+		-inkey $(<:%-chain.pem=%-key.pem) \
+		-out $@
