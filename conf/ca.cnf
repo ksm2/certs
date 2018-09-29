@@ -1,0 +1,36 @@
+[ req ]
+default_bits          = 4096 # key length 4096 bits RSA
+distinguished_name    = req_distinguished_name
+default_md            = sha256
+dirstring_type        = nombstr
+req_extensions        = v3_ca
+prompt                = no
+
+[ req_distinguished_name ]
+C   = DE
+ST  = Hamburg
+L   = Hamburg-Altona-Altstadt
+O   = Moellers Systems
+1.OU= Information Technology
+2.OU= Website
+CN  = Konstantin Simon Maria Moellers
+
+[ v3_ca ]
+# Extensions for a typical CA
+# PKIX recommendation.
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid:always,issuer
+basicConstraints = critical,CA:true
+
+# Key usage: this is typical for a CA certificate. However since it will
+# prevent it being used as an test self-signed certificate it is best
+# left out by default.
+# keyUsage = cRLSign, keyCertSign
+
+# Some might want this also
+nsCertType = sslCA, emailCA
+
+# Include email address in subject alt name: another PKIX recommendation
+subjectAltName=email:copy
+# Copy issuer details
+# issuerAltName=issuer:copy

@@ -1,0 +1,6 @@
+.idea/
+
+# Output
+*.pem
+*.csr
+*.srl

@@ -1,0 +1,41 @@
+[ req ]
+default_bits          = 4096 # key length 4096 bits RSA
+distinguished_name    = req_distinguished_name
+default_md            = sha256
+dirstring_type        = nombstr
+req_extensions        = v3_req
+prompt                = no
+
+[ req_distinguished_name ]
+C   = DE
+ST  = Hamburg
+L   = Hamburg-Altona-Altstadt
+O   = Moellers Systems
+1.OU= Information Technology
+2.OU= Website
+CN  = www.moellers.local
+
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @subject_alt_name
+
+[ subject_alt_name ]
+
+# requested SubjectAlternativeNames (SANs)
+#
+# SANs of type DNS
+# change those FQDNs to real FQDNs in domains registered to your organisation
+#
+DNS.1=www.moellers.local
+DNS.2=moellers.local
+DNS.3=localhost
+DNS.4=www.localhost
+
+# SANs of type IP
+# IP#s are normally not needed in certificates
+# change those RFC 1918 IP#s to real IP#s assigned to your organisation
+#
+#IP.1=10.11.12.13
+#IP.2=192.168.2.42
